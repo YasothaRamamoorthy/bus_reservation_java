@@ -1,42 +1,55 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-
-package com.mycompany.busreservation;
-
+package busreservation;
 import java.util.Scanner;
 import java.util.ArrayList;
-
-
 /**
  *
- * @author yasot
+ * @author yaso
  */
-public class Busreservation {
+public class BusReservation {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        ArrayList<BUS> buses = new ArrayList<BUS>();
+        // TODO code application logic here
+         ArrayList<Bus> buses = new ArrayList<Bus>();
         
-        buses.add(new BUS(121,true,20));
-        buses.add(new BUS(121,true,20));
-        buses.add(new BUS(121,true,20));    
+        buses.add(new Bus(121,true,2));
+        buses.add(new Bus(122,true,3));
+        buses.add(new Bus(123,true,2)); 
         
         
-        for(BUS b : buses)
+        for(Bus b : buses)
         {
             b.display_bus_info();
         }
         
-        int booking=1;
+        ArrayList<Booking> bookings = new ArrayList<Booking>();
+        
+        int book=1;
         Scanner scanner = new Scanner(System.in);
-        while(booking==1)
+        while(book==1)
         {
             System.out.println("If You want to book the seats enter 1 else enter 2 for exit : ");
-            booking = scanner.nextInt();
-            if(booking == 1)
+            book = scanner.nextInt();
+            if(book == 1)
             {
-                System.out.println("Booking ...");
+                Booking booking = new Booking();
+                if(booking.isAvaliable(bookings,buses))
+                {
+                    bookings.add(booking);
+                    System.out.println("BOOKING IS SUCESSFUL");
+                }
+                else
+                    System.out.println("SOORY , TRY ANOTHER BUS FOR BOOKING SEAT ARE FULL");
             }
         }
     }
-}
+    }
+    
+
